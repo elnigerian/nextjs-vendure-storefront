@@ -5,17 +5,76 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "type-check": "tsc"
+    "type-check": "tsc --pretty --noEmit",
+    "build:css": "tailwind build public/static/css/styles.css -o public/static/css/storefront.css",
+    "format": "prettier --write **/*.{js,ts,tsx}",
+    "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
+    "generate": "graphql-codegen --config codegen.yml"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged" ,
+      "pre-push": "yarn run type-check"
+    }
+  },
+  "lint-staged": {
+    "*.@(ts|tsx)": [
+      "yarn lint",
+      "yarn format"
+    ]
   },
   "dependencies": {
+    "@apollo/link-context": "^2.0.0-beta.3",
+    "@apollo/link-error": "^2.0.0-beta.3",
+    "@apollo/react-components": "^3.1.5",
+    "@apollo/react-hoc": "^3.1.5",
+    "@apollo/react-hooks": "^3.1.5",
+    "@apollo/react-ssr": "^3.1.5",
+    "@graphql-codegen/cli": "^1.16.0",
+    "@graphql-codegen/typescript": "^1.16.0",
+    "@graphql-codegen/typescript-operations": "^1.16.0",
+    "@graphql-codegen/typescript-react-apollo": "^1.16.0",
+    "apollo-cache-inmemory": "^1.6.6",
+    "apollo-client": "^2.6.10",
+    "apollo-link-http": "^1.5.17",
+    "apollo-link-token-refresh": "^0.3.1",
+    "cookie": "^0.4.1",
+    "dotenv": "^8.2.0",
+    "graphql": "^15.2.0",
+    "graphql-tag": "^2.10.3",
+    "isomorphic-unfetch": "^3.0.0",
+    "jwt-decode": "^2.2.0",
+    "lodash": "^4.17.15",
     "next": "latest",
+    "postcss-preset-env": "^6.7.0",
     "react": "^16.12.0",
-    "react-dom": "^16.12.0"
+    "react-dom": "^16.12.0",
+    "react-hook-form": "^6.0.1",
+    "tailwindcss": "^1.4.6"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "1.16.0",
+    "@graphql-codegen/introspection": "1.16.0",
+    "@graphql-codegen/typescript": "1.16.0",
+    "@graphql-codegen/typescript-operations": "1.16.0",
+    "@graphql-codegen/typescript-react-apollo": "1.16.0",
+    "@types/cookie": "^0.4.0",
+    "@types/graphql": "^14.5.0",
+    "@types/jwt-decode": "^2.2.1",
+    "@types/lodash": "^4.14.157",
     "@types/node": "^12.12.21",
     "@types/react": "^16.9.16",
     "@types/react-dom": "^16.9.4",
+    "@typescript-eslint/eslint-plugin": "^3.5.0",
+    "@typescript-eslint/parser": "^3.5.0",
+    "eslint": "^7.3.1",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.20.3",
+    "eslint-plugin-react-hooks": "^4.0.5",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.11",
+    "prettier": "^2.0.5",
     "typescript": "3.7.3"
   },
   "license": "ISC"
