@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Link from 'next/link';
-import Layout from '../components/shared/landing/Layout';
+import Layout from '../components/shared/landing/layout';
 
 const AboutPage = () => (
     <Layout title="About | Next.js + TypeScript Example">
